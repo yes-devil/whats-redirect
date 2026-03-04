@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send WhatsApp Review Message</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #128C7E;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Send Review Message</h2>
+
+    <form id="whatsappForm">
+        <label>WhatsApp Number (with country code)</label>
+        <input type="text" id="phone" placeholder="e.g. 919876543210" required>
+
+        <label>Company Name</label>
+        <input type="text" id="company" placeholder="Enter company name" required>
+
+        <label>Google Review Number</label>
+        <input type="text" id="review" placeholder="Enter review number" required>
+
+        <button type="submit">Open WhatsApp Chat</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("whatsappForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    var phone = "+91" + (document.getElementById("phone").value.trim());
+    var company = document.getElementById("company").value.trim();
+    var review = document.getElementById("review").value.trim();
+
+    // ===== CUSTOM MESSAGE TEMPLATE (EDIT THIS PART) =====
+    var message = `Hi ${company}!
+
+I build professional websites that help businesses get more customers.
+
+I noticed you currently have ${review} reviews on Google — with the right website and strategy, we can help you attract more customers and increase those reviews even further.
+
+Let me know if you'd like to grow your market.
+
+    Interested?
+
+Best regards,
+Kirtiraj`;
+    // =====================================================
+
+    var encodedMessage = encodeURIComponent(message);
+    var whatsappURL = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+    window.location.href = whatsappURL;
+});
+</script>
+
+</body>
+</html>
